@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.metro.connect.dto.LocationResponseDto;
 
 @Component
-@FeignClient(name = "ticket-booking-location-service")
+@FeignClient(name = "metro-connect-location-service")
 public interface MetroLocationService {
 	
 	@GetMapping("api/location/fetch")

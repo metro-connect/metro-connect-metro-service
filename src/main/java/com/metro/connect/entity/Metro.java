@@ -14,8 +14,8 @@ public class Metro {
 	private int id;
 	private String name;
 	private String number;
-	private int totalCoach;
-	private int totalSeatInEachCoach;
+	private int totalCoach; // ToBeRemoved
+	private int totalSeatInEachCoach; // ToBeRemoved
 	private double seatPrice;
 	private int fromLocationId;
 	private int toLocationId;

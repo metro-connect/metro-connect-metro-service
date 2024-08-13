@@ -10,7 +10,7 @@ import com.metro.connect.dto.AddScheduleMetroTicketRequestDto;
 import com.metro.connect.dto.CommonApiResponse;
 
 @Component
-@FeignClient(name = "ticket-booking-book-service")
+@FeignClient(name = "metro-connect-book-service")
 public interface MetroBookingService {
 	
 	@PostMapping("/api/book/add/scheduled/metro/tickets/")

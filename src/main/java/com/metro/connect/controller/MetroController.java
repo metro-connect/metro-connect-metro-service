@@ -1,6 +1,8 @@
 package com.metro.connect.controller;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,6 +26,8 @@ import com.metro.connect.resource.MetroResource;
 @RequestMapping("/api/metro/")
 @CrossOrigin(origins = "http://localhost:3000")
 public class MetroController {
+
+	private static  final Logger logger =  LoggerFactory.getLogger(MetroController.class);
 
 	@Autowired
 	private MetroResource metroResource;
@@ -50,6 +54,8 @@ public class MetroController {
 	
 	@GetMapping("/fetch/all")
 	public ResponseEntity<MetroDetailResponseDto> fetchAllMetros() {
+		logger.info("This fetch all metro api");
+
 		return metroResource.fetchAllMetros();
 	}
 
@@ -66,6 +72,8 @@ public class MetroController {
 
 	@PostMapping("/schedule")
 	public ResponseEntity<CommonApiResponse> scheduleMetro(@RequestBody ScheduleMetro scheduleMetro) {
+		logger.info("This is the ScheduleMetro API call {}", scheduleMetro.toString());
+
 		return metroResource.scheduleMetro(scheduleMetro);
 	}
 

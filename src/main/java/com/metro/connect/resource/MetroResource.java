@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.transaction.Transactional;
+
+import com.metro.connect.controller.MetroController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +42,9 @@ import com.metro.connect.utility.ScheduleMetroReferenceNumberGenerator;
 @Component
 public class MetroResource {
 
+	private static  final Logger logger =  LoggerFactory.getLogger(MetroResource.class);
+
+
 	@Autowired
 	private MetroService metroService;
 
@@ -63,7 +70,7 @@ public class MetroResource {
 		if (metro == null) {
 			response.setResponseMessage("Bad Request, Metro details not proper");
 			response.setSuccess(true);
-
+			response.setStatus(HttpStatus.BAD_REQUEST);
 			return new ResponseEntity<CommonApiResponse>(response, HttpStatus.BAD_REQUEST);
 		}
 
@@ -281,6 +288,8 @@ public class MetroResource {
 
 		List<Metro> metros = this.metroService.getMetroByStatus(MetroStatus.ACTIVE.value());
 
+		logger.info("List of Metros {}", metros.toString());
+
 		if (metros == null) {
 			response.setResponseMessage("No Active Metros found in database");
 			response.setSuccess(true);
@@ -462,6 +471,9 @@ public class MetroResource {
 
 			return new ResponseEntity<CommonApiResponse>(response, HttpStatus.BAD_REQUEST);
 		}
+
+
+		logger.info("Getting Metro by metro Id {}", scheduleMetro.getMetroId());
 
 		Metro metro = this.metroService.getMetroById(scheduleMetro.getMetroId());
 
